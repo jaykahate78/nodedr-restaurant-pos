@@ -1,0 +1,46 @@
+name: Import Generated Restaurant Menu Photos
+on:
+  push:
+    branches: [master]
+    paths: ['.github/workflows/import-generated-food-photos.yml']
+permissions:
+  contents: write
+jobs:
+  import-photos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Download generated food photos into public menu assets
+        env:
+          PHOTO_1: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2Fbb4aa711-dac9-46b6-91c7-a2cb772a2930/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAKeMjcqQZOqQ3grZ03USahYcAmE52psiBB_4WZ29wVie&exp=1793017594&osig=AAAAAAAAAAAAAAAAAAAAAHD2Ryp2tbQrScX452eAOSJ7p_AIhngr0q_g7yUeJyib&signer=media-rpc&token=AAIAAU0AJGJiNGFhNzExLWRhYzktNDZiNi05MWM3LWEyY2I3NzJhMjkzMAAAAAABoXgtQJCxo0suiVBTFF_4UTz_ELSjOt-JgB-NU2BUDjjbmpKnog&x-canva-quality=thumbnail"
+          PHOTO_2: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2F9e273d88-18cb-4cf1-a5be-63af5c7dab73/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAJL5pvGVuxP37KvPW-e7SaHP58CKgBj1-7VE80KB9cTC&exp=1793018029&osig=AAAAAAAAAAAAAAAAAAAAANB-Z4HKLfF0L6woHf0sQ5YB6Dxyyj1s1C-jb9vzbKy-&signer=media-rpc&token=AAIAAU0AJDllMjczZDg4LTE4Y2ItNGNmMS1hNWJlLTYzYWY1YzdkYWI3MwAAAAABoXgz48ge6P7Sbx9TXQJLezytdDBofLVIrGP3mpKE2xZH9Nb_KQ&x-canva-quality=thumbnail"
+          PHOTO_3: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2F05d4c710-90d3-41e5-964b-9af55899fa6e/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAABEJ3QYPYDA9q-opAjYXLjkUvGy9_CA-ltfx32cpZm0&exp=1793018315&osig=AAAAAAAAAAAAAAAAAAAAAJnLpuxJ9nDxTgNft1xbanxoxso1POIfF0aXFQUIRq4P&signer=media-rpc&token=AAIAAU0AJDA1ZDRjNzEwLTkwZDMtNDFlNS05NjRiLTlhZjU1ODk5ZmE2ZQAAAAABoXg4QPjEeZeFvjzRLWfOg-674qM3UuEEfiWG8jCo7CgOBBJdEA&x-canva-quality=thumbnail"
+          PHOTO_4: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2F1958b88e-52ed-4ec8-b110-c669465dda3c/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAAVOUbGluSwoEZu_hEQuksOWT7duTsRjIpCaKF4QVdPu&exp=1793016277&osig=AAAAAAAAAAAAAAAAAAAAAPLzktcf2vogk7uKPQJW54q81Nbvv9uNEBZU_8OSeb__&signer=media-rpc&token=AAIAAU0AJDE5NThiODhlLTUyZWQtNGVjOC1iMTEwLWM2Njk0NjVkZGEzYwAAAAABoXgZKAjxf0oll3cKDsKF1LzOok68USJN13faJ0KP2INJ7vNwYA&x-canva-quality=thumbnail"
+          PHOTO_5: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2F4fecf7f1-cf24-4d63-9526-95dc4328c072/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAGSbnCJNZv49wbbGv10OqaUZtKF8YO8MZ8UkY4wjYYVc&exp=1793016363&osig=AAAAAAAAAAAAAAAAAAAAAExjQC3RGG3tLR-t8YsblJGDdBxZWP-0h64NG-Bba1iN&signer=media-rpc&token=AAIAAU0AJDRmZWNmN2YxLWNmMjQtNGQ2My05NTI2LTk1ZGM0MzI4YzA3MgAAAAABoXgad_icBUbMscABGdjZFi_GGeM8kNGvSa0x6sJI7_Oe8vhXeg&x-canva-quality=thumbnail"
+          PHOTO_6: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2Fc71e051c-5243-410b-8686-9b22fde9a3d4/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAACWF9R-XrmSoswpEF7B-4cgJSinO0WXjAput8g8pFfm&exp=1793018037&osig=AAAAAAAAAAAAAAAAAAAAAIzrcWfmoAG7NNvTG_jVSWKJCoYPHaXiW0X1RNyVA7uI&signer=media-rpc&token=AAIAAU0AJGM3MWUwNTFjLTUyNDMtNDEwYi04Njg2LTliMjJmZGU5YTNkNAAAAAABoXg0AwihRCSBBgmgyNO6X8jLl450hL4cGN76AE-bYGZUp7a_9g&x-canva-quality=thumbnail"
+          PHOTO_7: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2Fe937542e-1d5d-45c8-818e-c495d096306d/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAOWlAtw4efKJEEvHUf7pkSmjQl9-pZDPAYeppji1gKyv&exp=1793017443&osig=AAAAAAAAAAAAAAAAAAAAAOfNHQgNhDR8g3JBYz8yOlUnVoJsx9LG5ryR6ffC1fg2&signer=media-rpc&token=AAIAAU0AJGU5Mzc1NDJlLTFkNWQtNDVjOC04MThlLWM0OTVkMDk2MzA2ZAAAAAABoXgq8rgJgaFCxOe_Hk6psn6eoEw3uLUY0MDFHWlC8yZ_5i-SOQ&x-canva-quality=thumbnail"
+          PHOTO_8: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2Fc3b12886-cc11-4757-a5ed-c9719b645cf1/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAPIS41XVW5-g4Euzb-INPGDBP9ZE1crBs0OpV8yvOKie&exp=1793019433&osig=AAAAAAAAAAAAAAAAAAAAALsXO7mIEFnAUzpgNpVH0dgO0XKjE_j8_g73K9wV39x8&signer=media-rpc&token=AAIAAU0AJGMzYjEyODg2LWNjMTEtNDc1Ny1hNWVkLWM5NzE5YjY0NWNmMQAAAAABoXhJUCgjbj8tCg-OIk5eEova8-fVg8gTxTf_Dc5ikAKNOEEGTQ&x-canva-quality=thumbnail"
+          PHOTO_9: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2Ffaf1a58b-8c05-4875-976e-df95ce403442/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAPYitpUHe8vEOGgZqh90nFKoRsyq7iD8s4bNXjbaL3oC&exp=1793018662&osig=AAAAAAAAAAAAAAAAAAAAANWdRE8-7u2HQ9fl2_6yngqVf1IPg_WKYExOl7pzhvOT&signer=media-rpc&token=AAIAAU0AJGZhZjFhNThiLThjMDUtNDg3NS05NzZlLWRmOTVjZTQwMzQ0MgAAAAABoXg9jHDyRB1F7lI8GiNNoIEzGxmXaQFPXeH_m7FohLpDYriJjg&x-canva-quality=thumbnail"
+          PHOTO_10: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2F73e2ef7f-dd13-498c-a77e-04a5721b48b8/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAABlivzDlY6cANKOXLPZ2xUT0wvXKrDdurcealxZj5LeS&exp=1793017162&osig=AAAAAAAAAAAAAAAAAAAAAGzTBFHzdfoJAdVXIrFCow-VXgw3PqmyxdYLUp_pQCm-&signer=media-rpc&token=AAIAAU0AJDczZTJlZjdmLWRkMTMtNDk4Yy1hNzdlLTA0YTU3MjFiNDhiOAAAAAABoXgmqRCHg3Id7Y97WqSk_tpu73rHI6v_YZC_Vnc6Iuq4AUlWBw&x-canva-quality=thumbnail"
+        run: |
+          set -euo pipefail
+          mkdir -p apps/web/public/menu-generated
+          curl -fL --retry 3 --max-time 40 "$PHOTO_1" -o "apps/web/public/menu-generated/regular-pavbhaji.png"
+          curl -fL --retry 3 --max-time 40 "$PHOTO_2" -o "apps/web/public/menu-generated/saoji-pavbhaji.png"
+          curl -fL --retry 3 --max-time 40 "$PHOTO_3" -o "apps/web/public/menu-generated/mushroom-pavbhaji.png"
+          curl -fL --retry 3 --max-time 40 "$PHOTO_4" -o "apps/web/public/menu-generated/paneer-pavbhaji.png"
+          curl -fL --retry 3 --max-time 40 "$PHOTO_5" -o "apps/web/public/menu-generated/tawa-pulav.png"
+          curl -fL --retry 3 --max-time 40 "$PHOTO_6" -o "apps/web/public/menu-generated/paneer-pulav.png"
+          curl -fL --retry 3 --max-time 40 "$PHOTO_7" -o "apps/web/public/menu-generated/regular-combo.png"
+          curl -fL --retry 3 --max-time 40 "$PHOTO_8" -o "apps/web/public/menu-generated/paneer-combo.png"
+          curl -fL --retry 3 --max-time 40 "$PHOTO_9" -o "apps/web/public/menu-generated/paneer-kathi-roll.png"
+          curl -fL --retry 3 --max-time 40 "$PHOTO_10" -o "apps/web/public/menu-generated/masala-pav.png"
+          file apps/web/public/menu-generated/*.png
+      - name: Commit permanent image files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/web/public/menu-generated/
+          git commit -m "Add generated restaurant menu food photos" || exit 0
+          git push
