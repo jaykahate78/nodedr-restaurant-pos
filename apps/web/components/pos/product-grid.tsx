@@ -89,6 +89,18 @@ export function ProductGrid({
             onClick={() => onSelect(item)}
             className="flex min-h-24 flex-col items-start gap-2 rounded-2xl border border-border bg-card p-3 text-left sm:p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md active:scale-[0.97] active:translate-y-0 lg:min-h-32 lg:justify-between lg:p-4 lg:hover:border-primary/50"
           >
+            {item.imageUrl ? (
+              <div className="relative mb-1 h-24 w-full overflow-hidden rounded-xl bg-muted sm:h-28">
+                {/* Menu images are optional; failures leave a clean card without broken-image icons. */}
+                <img
+                  src={item.imageUrl}
+                  alt={item.name}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  onError={(event) => { event.currentTarget.style.display = "none"; }}
+                />
+              </div>
+            ) : null}
             <span
               className={`h-2.5 w-2.5 rounded-full ${item.isVeg ? "bg-success" : "bg-destructive"}`}
             />
